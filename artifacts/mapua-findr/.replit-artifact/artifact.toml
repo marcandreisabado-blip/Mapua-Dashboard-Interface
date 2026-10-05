@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Mapúa Findr"
+description = "A campus lost-and-found interface for Mapúa students, faculty, and staff to browse found items, report missing belongings, submit claims, and follow item custody."
+version = "1.0.0"
+id = "artifacts/mapua-findr"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25549
+
+[services.development]
+run = "pnpm --filter @workspace/mapua-findr run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mapua-findr", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/mapua-findr/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25549"
+BASE_PATH = "/"
