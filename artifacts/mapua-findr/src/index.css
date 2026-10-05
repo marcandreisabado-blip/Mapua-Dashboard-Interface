@@ -653,7 +653,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .browse-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin-bottom: 20px; }
 .browse-filters .search-box { min-width: 240px; }
 .date-filter { display: flex; flex-direction: column; gap: 5px; color: #73757b; font-size: 10px; }
-.date-filter input { height: 37px; border: 1px solid #e1e2e5; border-radius: 4px; padding: 0 9px; color: var(--TEXT_DARK); background: white; font-size: 11px; }
+.date-filter input, .date-filter select { height: 37px; border: 1px solid #e1e2e5; border-radius: 4px; padding: 0 9px; color: var(--TEXT_DARK); background: white; font-size: 11px; }
 .browse-results { border-top: 1px solid var(--mf-line); }
 .browse-results-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 17px 0 4px; }
 .browse-results-heading h2 { margin: 0; font-size: 15px; }
@@ -771,7 +771,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   .browse-filters { align-items: stretch; }
   .browse-filters .search-box { flex-basis: 100%; }
   .date-filter { flex: 1; min-width: 125px; }
-  .date-filter input { width: 100%; }
+  .date-filter input, .date-filter select { width: 100%; }
   .browse-filters > .filter-button { align-self: flex-end; }
   .report-header { align-items: flex-start; gap: 12px; margin: 27px 0 16px; }
   .report-header .placeholder-icon { width: 47px; height: 47px; }

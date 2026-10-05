@@ -34,7 +34,7 @@ router.get("/items", async (req, res): Promise<void> => {
     return;
   }
 
-  const { q, dateFrom, dateTo, limit, offset } = parsed.data;
+  const { q, category, dateFrom, dateTo, limit, offset } = parsed.data;
   if (
     (dateFrom && !isCalendarDate(dateFrom)) ||
     (dateTo && !isCalendarDate(dateTo)) ||
@@ -56,6 +56,7 @@ router.get("/items", async (req, res): Promise<void> => {
       ),
     );
   }
+  if (category) filters.push(eq(foundItemsTable.category, category));
   if (dateFrom) filters.push(gte(foundItemsTable.foundAt, dateFrom));
   if (dateTo) filters.push(lte(foundItemsTable.foundAt, dateTo));
 

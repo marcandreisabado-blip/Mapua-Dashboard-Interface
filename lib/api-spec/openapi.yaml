@@ -54,6 +54,18 @@ paths:
             minLength: 10
             maxLength: 10
             pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Electronics
+              - Personal items
+              - School supplies
+              - Clothing & accessories
+              - Keys & cards
+              - Other
         - name: limit
           in: query
           required: false
