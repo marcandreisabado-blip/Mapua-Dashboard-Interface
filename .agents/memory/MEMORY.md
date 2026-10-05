@@ -1,0 +1,1 @@
+- [Mapúa Findr public-report boundary](mapua-findr-public-report-boundary.md) — Reports are anonymous and public until Mapúa sign-in exists; keep identity and claim-verification data out of public listings.
