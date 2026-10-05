@@ -23,6 +23,7 @@ dateFrom?: string;
  * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
  */
 dateTo?: string;
+category?: 'Electronics' | 'Personal items' | 'School supplies' | 'Clothing & accessories' | 'Keys & cards' | 'Other';
 /**
  * @minimum 1
  * @maximum 100

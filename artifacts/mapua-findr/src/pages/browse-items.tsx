@@ -1,13 +1,23 @@
 import { useEffect, useState, type ChangeEvent } from "react";
 import { ArrowLeft, ArrowRight, Search } from "lucide-react";
 import { useListFoundItems } from "@workspace/api-client-react";
+import type { FoundItemInputCategory } from "@workspace/api-client-react";
 import { FoundItemRow } from "@/components/found-item";
 
 const PAGE_SIZE = 20;
+const categories: FoundItemInputCategory[] = [
+  "Electronics",
+  "Personal items",
+  "School supplies",
+  "Clothing & accessories",
+  "Keys & cards",
+  "Other",
+];
 
 export default function BrowseItemsPage() {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [category, setCategory] = useState<FoundItemInputCategory | "">("");
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [offset, setOffset] = useState(0);
@@ -22,6 +32,7 @@ export default function BrowseItemsPage() {
 
   const itemsQuery = useListFoundItems({
     q: debouncedQuery || undefined,
+    category: category || undefined,
     dateFrom: dateFrom || undefined,
     dateTo: dateTo || undefined,
     limit: PAGE_SIZE + 1,
@@ -33,6 +44,10 @@ export default function BrowseItemsPage() {
 
   const changeDateRange = (setter: (value: string) => void) => (event: ChangeEvent<HTMLInputElement>) => {
     setter(event.target.value);
+    setOffset(0);
+  };
+  const changeCategory = (event: ChangeEvent<HTMLSelectElement>) => {
+    setCategory(event.target.value as FoundItemInputCategory | "");
     setOffset(0);
   };
 
@@ -53,7 +68,21 @@ export default function BrowseItemsPage() {
         </label>
         <label className="date-filter"><span>Found from</span><input type="date" value={dateFrom} onChange={changeDateRange(setDateFrom)} /></label>
         <label className="date-filter"><span>Found to</span><input type="date" value={dateTo} onChange={changeDateRange(setDateTo)} /></label>
-        <button className="filter-button" onClick={() => { setQuery(""); setDateFrom(""); setDateTo(""); setOffset(0); }}>Clear</button>
+        <label className="date-filter">
+          <span>Category</span>
+          <select value={category} onChange={changeCategory}>
+            <option value="">All categories</option>
+            {categories.map((itemCategory) => (
+              <option key={itemCategory} value={itemCategory}>{itemCategory}</option>
+            ))}
+          </select>
+        </label>
+        <button
+          className="filter-button"
+          onClick={() => { setQuery(""); setCategory(""); setDateFrom(""); setDateTo(""); setOffset(0); }}
+        >
+          Clear
+        </button>
       </div>
       <section className="browse-results" aria-live="polite">
         <div className="browse-results-heading">

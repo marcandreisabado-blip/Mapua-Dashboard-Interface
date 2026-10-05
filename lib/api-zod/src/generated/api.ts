@@ -44,6 +44,7 @@ export const ListFoundItemsQueryParams = zod.object({
   "q": zod.coerce.string().max(listFoundItemsQueryQMax).optional(),
   "dateFrom": zod.coerce.string().min(listFoundItemsQueryDateFromMin).max(listFoundItemsQueryDateFromMax).regex(listFoundItemsQueryDateFromRegExp).optional(),
   "dateTo": zod.coerce.string().min(listFoundItemsQueryDateToMin).max(listFoundItemsQueryDateToMax).regex(listFoundItemsQueryDateToRegExp).optional(),
+  "category": zod.enum(['Electronics', 'Personal items', 'School supplies', 'Clothing & accessories', 'Keys & cards', 'Other']).optional(),
   "limit": zod.coerce.number().int().min(1).max(listFoundItemsQueryLimitMax).default(listFoundItemsQueryLimitDefault),
   "offset": zod.coerce.number().int().min(listFoundItemsQueryOffsetMin).default(listFoundItemsQueryOffsetDefault)
 })
